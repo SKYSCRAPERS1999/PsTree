@@ -31,8 +31,8 @@ void add_proc(char* filename){
 	FILE* fp = fopen(filename, "r");
 	if (fp) {
 	  // 用fscanf, fgets等函数读取
-	  int pid, state, ppid; char name[60];
-	  if (fscanf(fp, "%d%s%c%d%d", &pid, name, &state, &ppid) == 4){
+	  int pid, state, ppid, pgrp; char name[60];
+	  if (fscanf(fp, "%d%s%c%d%d", &pid, name, &state, &ppid, &pgrp) == 4){
 	  	printf("OK\n");
 	  }else{printf("Not OK\n");}
 	  
