@@ -38,7 +38,7 @@ void add_proc(char* filename){
 	  
 	  fclose(fp);
 	} else {
-		printf("Not OK\n");
+		//printf("Not OK\n");
 	  // 错误处理
 	}
 
