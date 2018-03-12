@@ -21,9 +21,10 @@ struct Proc{
 	//int *sons; 
 	//Proc(int pid, int ppid, int pgrp, char name[64]):pid(pid),ppid(ppid),pgrp(pgrp),name(name){}
 }proc[maxp];
+typedef struct Proc Proc;
 
 int compare(const void* A, const void* B){
-	return ((struct Proc*)A)->name < ((struct Proc*)B)->name ? -1 : 1;
+	return ((Proc*)A)->name < ((Proc*)B)->name ? -1 : 1;
 }
 
 bool str_is_digit(char *s){
