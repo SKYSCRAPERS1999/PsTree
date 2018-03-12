@@ -87,7 +87,7 @@ void dfs_print(){
 				adj[i][ an[i]++ ] = j;	
 			}
 		}
-		is_last[ adj[i][ an[i] ] ] = true;
+		is_last[ adj[i][ an[i] - 1 ] ] = true;
 	}
 
 	int idx = -1, in = 0;
@@ -99,7 +99,7 @@ void dfs_print(){
 void dfs(int x, int px, int indent, int in){
 	for (int i = 0, j = 0; i < indent; i++){ 
 		while (j < in && indents[j] < i) j++;
-		if (j < in && indents[j] == i && !((j == in - 1 || i == indent - 1) && is_last[px])) printf("|");
+		if (j < in && indents[j] == i && !(j == in - 1 && is_last[px])) printf("|");
 		else printf(" ");
 	}
 
