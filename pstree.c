@@ -105,11 +105,9 @@ void dfs(int x, int px, int indent, int in){
 	int next_indent = indent + printf("|----%s\n", proc[x].name) - 2;
 	indents[in++] = next_indent;
 
-	for (int i = 0; i < pn; i++){
-		int len = an[i];
-		for (int j = 0; j < len; j++){
-			dfs(adj[i][j], i, next_indent, in); 
-		}
+	int len = an[x];
+	for (int i = 0; i < len; i++){
+		if (adj[x][i] != px) dfs(adj[x][i], x, next_indent, in); 
 	}
 }
 
