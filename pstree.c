@@ -100,7 +100,7 @@ void dfs(int x, int px, int indent, int in){
 	for (int i = 0, j = 0; i < indent; i++){ 
 		while (j < in && indents[j] < i) j++;
 
-		if (j < in && indents[j] == i)) {
+		if (j < in && indents[j] == i) {
 			printf("|");
 		}
 		else printf(" ");
