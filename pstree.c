@@ -134,8 +134,8 @@ int main(int argc, char *argv[]) {
   for (i = 0; i < argc; i++) {
     assert(argv[i]); // specification
     printf("argv[%d] = %s\n", i, argv[i]);
-    if (argv[i] == "-p" || argv[i] == "--show-pids") show_pid = true;
-    else if (argv[i] == "-n" || argv[i] == "--numeric-sort") be_sorted = true;
+    if (!strcmp(argv[i], "-p") || !strcmp(argv[i], "--show-pids")) show_pid = true;
+    else if (!strcmp(argv[i], "-n") || !strcmp(argv[i], "--numeric-sort")) be_sorted = true;
   }
   assert(!argv[argc]); // specification
 
