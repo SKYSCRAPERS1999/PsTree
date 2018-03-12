@@ -35,9 +35,9 @@ int add_proc(char* filename){
 	FILE* fp = fopen(filename, "r");
 	if (fp) {
 	  if (fscanf(fp, "%d%s%c%d%d", &proc[pn].pid, proc[pn].name, &proc[pn].state, &proc[pn].ppid, &proc[pn].pgrp) > 0){
-	  	proc[pn].sz = 0, proc[pn].mxsz = 50, proc[pn].sons = (int *)malloc(50 * sizeof(int));	  	
-	  	++pn;
-	  	puts("OK");
+	  	proc[pn].sz = 0, proc[pn].mxsz = 50, proc[pn].sons = (int *)malloc(50 * sizeof(int));
+	  	++pn; puts("OK");
+
 	  }else{puts("ERROR");}
 	  fclose(fp);
 	} else {
@@ -63,6 +63,29 @@ void read_proc(char* dir){
 	}
 	closedir(dp);
 }
+
+int find_proc(int pid){
+	for (int i = 0; i < pn; i++) if (proc[i].pid == pid) return i;
+	return -1;
+}
+
+void dfs_print(){
+	int idx = -1;
+	if ((idx = find_proc(1)) > 0){
+		dfs(idx, idx);
+	}
+}
+
+void dfs(int x, int px){
+	printf("%d-->%d\n", proc[px].pid, proc[x].pid);
+	for (int i = 0; i < pn; i++){
+		if (i == x || i == px) continue;
+		if (proc[i].ppid == proc[x].pid){
+			dfs(i, x);
+		} 
+	}
+}
+
 
 int main(int argc, char *argv[]) {
   int i;
