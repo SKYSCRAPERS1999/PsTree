@@ -73,7 +73,7 @@ void dfs_print(){
 	int idx = -1;
 	if ((idx = find_proc(1)) > 0){
 		dfs(idx, idx);
-	}
+	}else{puts("ERROR");}
 }
 
 void dfs(int x, int px){
