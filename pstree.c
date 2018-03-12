@@ -57,9 +57,7 @@ void read_proc(char* dir){
 			printf("%s%s\n", dir, dirp->d_name);
 			char new_dir[100];
 			sprintf(new_dir, "%s%s", dir, dirp->d_name);
-			//char* new_dir = strcat(dir, dirp->d_name);
-			//printf("%s", new_dir);
-			//add_proc(new_dir);
+			add_proc(new_dir);
 		}
 	}
 	closedir(dp);
