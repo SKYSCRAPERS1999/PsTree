@@ -34,7 +34,7 @@ bool str_is_digit(char *s){
 void add_proc(char* filename){
 	FILE* fp = fopen(filename, "r");
 	if (fp) {
-	  if (fscanf(fp, "%d(%s)%s%d%d", &proc[pn].pid, proc[pn].name, &proc[pn].state, &proc[pn].ppid, &proc[pn].pgrp) > 0){
+	  if (fscanf(fp, "%d (%s) %s%d%d", &proc[pn].pid, proc[pn].name, &proc[pn].state, &proc[pn].ppid, &proc[pn].pgrp) > 0){
 	  	//proc[pn].sz = 0, proc[pn].mxsz = 50, proc[pn].sons = (int *)malloc(50 * sizeof(int));
 	  	printf("%d : %d %s %s %d %d\n", pn,  proc[pn].pid, proc[pn].name, proc[pn].state, proc[pn].ppid, proc[pn].pgrp);
 	  	++pn; puts("OK");;
