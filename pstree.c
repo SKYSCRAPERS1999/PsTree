@@ -32,14 +32,13 @@ void add_proc(char* filename){
 	if (fp) {
 	  // 用fscanf, fgets等函数读取
 	  int pid, ppid, pgrp; char name[60]; char state;
-	  if (fscanf(fp, "%d%s%c%d%d", &pid, name, &state, &ppid, &pgrp) == 4){
+	  if (fscanf(fp, "%d%s%c%d%d", &pid, name, &state, &ppid, &pgrp) == 5){
 	  	printf("OK\n");
 	  }else{printf("Not OK\n");}
 	  
 	  fclose(fp);
 	} else {
 		//printf("Not OK\n");
-	  // 错误处理
 	}
 
 }
