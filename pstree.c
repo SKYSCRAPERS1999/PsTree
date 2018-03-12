@@ -9,7 +9,6 @@ typedef int bool;
 #define true 1 
 #define false 0
 #define maxp 50000
-#define maxn 100
 
 int pn = 0; 
 struct Proc{
@@ -45,7 +44,7 @@ void add_proc(char* dir){
 
 }
 
-void read_proc(char dir[maxn]){
+void read_proc(char* dir){
 	DIR *dp;
 	struct dirent *dirp;
 	if ((dp = opendir(dir)) == NULL) {
