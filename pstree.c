@@ -79,8 +79,11 @@ int find_proc(int pid){
 int adj[maxp][maxp], an[maxp];
 void dfs_print(){
 	for (int i = 0; i < pn; i++){
-		if (proc[i].ppid == proc[x].pid){
-			adj[x][ an[x]++ ] = i;	
+		for (int j = 0; j < pn; j++){
+			if (j == i) continue;
+			if (proc[j].ppid == proc[i].pid){
+				adj[i][ an[i]++ ] = j;	
+			}
 		}
 	}
 
@@ -94,26 +97,21 @@ void dfs_print(){
 }
 
 void dfs(int x, int px, int indent, int* indents, int in){
-	for (int i = 0; i < indent; i++){
-		bool ok = 0;
-		for (int j = 0; j < in; j++) {
-			if (indents[j] == i) {
-				ok = 1; break;
-			}
-		}
-		if (ok) printf("|");
-		else printf(" ");
+	for (int i = 0, j = 0; i < indent; i++){
+		while (indents[j] < i) j++;
+		if (indents[j] == i) printf(" "), j++;
+		else printf("|");
 	}
+
 	int next_indent = indent + printf("|----%s\n", proc[x].name) - 2;
 	indents[in++] = next_indent;
 
 	for (int i = 0; i < pn; i++){
-		if (i == x || i == px) continue;
-		if (proc[i].ppid == proc[x].pid){
-			dfs(i, x, next_indent, indents, in);
-		} 
+		int len = an[i];
+		for (int j = 0; j < len; j++){
+			dfs(adj[i][j], i, next_indent, indents, in); 
+		}
 	}
-
 }
 
 
