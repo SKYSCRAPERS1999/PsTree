@@ -101,9 +101,9 @@ void dfs(int x, int px, int indent, int in){
 		while (j < in && indents[j] < i) j++;
 
 		if (j < in && indents[j] == i) {
-			printf("|");
-		}
-		else printf(" ");
+			if (!islast[px]) printf("|");
+			else printf(" ");
+		} else printf(" ");
 	}
 
 	int next_indent = indent + printf("|----%s\n", proc[x].name) - 2;
