@@ -31,12 +31,12 @@ bool str_is_digit(char *s){
 	return ok;
 }
 
-int add_proc(char* filename){
+void add_proc(char* filename){
 	FILE* fp = fopen(filename, "r");
 	if (fp) {
 	  if (fscanf(fp, "%d%s%c%d%d", &proc[pn].pid, proc[pn].name, &proc[pn].state, &proc[pn].ppid, &proc[pn].pgrp) > 0){
 	  	//proc[pn].sz = 0, proc[pn].mxsz = 50, proc[pn].sons = (int *)malloc(50 * sizeof(int));
-	  	printf("%d %s %c %d %d", proc[pn].pid, proc[pn].name, proc[pn].state, proc[pn].ppid, proc[pn].pgrp);
+	  	printf("%d : %d %s %c %d %d\n", pn,  proc[pn].pid, proc[pn].name, proc[pn].state, proc[pn].ppid, proc[pn].pgrp);
 	  	++pn; puts("OK");;
 
 	  }else{puts("ERROR");}
@@ -44,7 +44,6 @@ int add_proc(char* filename){
 	} else {
 		printf("Not Opened\n");
 	}
-	return pn;
 }
 
 void read_proc(char* dir){
@@ -59,7 +58,7 @@ void read_proc(char* dir){
 		else {
 			char filename[256];
 			sprintf(filename, "%s%s/stat", dir, dirp->d_name);
-			printf("cnt: %d\n", add_proc(filename));
+			add_proc(filename);
 		}
 	}
 	closedir(dp);
