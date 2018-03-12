@@ -16,9 +16,7 @@ int pn;
 struct Proc{
 	int pid, ppid, pgrp; 
 	char name[64]; char state[8];
-	//int sz, mxsz;
-	//int *sons; 
-	//Proc(int pid, int ppid, int pgrp, char name[64]):pid(pid),ppid(ppid),pgrp(pgrp),name(name){}
+	//int sz, mxsz; //int *sons; //Proc(int pid, int ppid, int pgrp, char name[64]):pid(pid),ppid(ppid),pgrp(pgrp),name(name){}
 }proc[maxp];
 typedef struct Proc Proc;
 
@@ -48,8 +46,8 @@ void add_proc(char* filename){
 		  	}
 		  	proc[pn].name[len - 2] = '\0';
 		}
-	  	//printf("%d : %d %s %s %d %d\n", pn,  proc[pn].pid, proc[pn].name, proc[pn].state, proc[pn].ppid, proc[pn].pgrp);
-	  	++pn; //puts("OK");
+	  	//puts("OK"); //printf("%d : %d %s %s %d %d\n", pn,  proc[pn].pid, proc[pn].name, proc[pn].state, proc[pn].ppid, proc[pn].pgrp);
+	  	++pn; 
 	  }else{puts("ERROR");}
 	  fclose(fp);
 	} else {
@@ -138,7 +136,18 @@ int main(int argc, char *argv[]) {
     printf("argv[%d] = %s\n", i, argv[i]);
     if (!strcmp(argv[i], "-p") || !strcmp(argv[i], "--show-pids")) show_pid = true;
     else if (!strcmp(argv[i], "-n") || !strcmp(argv[i], "--numeric-sort")) be_sorted = true;
+    if (!strcmp(argv[i], "-v") || !strcmp(argv[i], "--version")){
+    	printf("pstree (PSmisc) 22.21\n
+		Copyright (C) 1993-2009 Werner Almesberger and Craig Small\n
+		PSmisc comes with ABSOLUTELY NO WARRANTY.\n
+		This is free software, and you are welcome to redistribute it under\n
+		the terms of the GNU General Public License.\n
+		For more information about these matters, see the files named COPYING.\n
+		Escape~");
+		return 0;
+    }
   }
+
   assert(!argv[argc]); // specification
 
   read_proc("/proc/");
