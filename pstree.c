@@ -83,12 +83,13 @@ void dfs_print(){
 	}else{puts("ERROR");}
 }
 
-void dfs(int x, int px){
-	printf("%d-->%d\n", proc[px].pid, proc[x].pid);
+void dfs(int x, int px, int indent){
+	for (int i = 0; i < indent; i++) printf(" ");
+	int next_indent = printf("|---%d\n", proc[x].pid);
 	for (int i = 0; i < pn; i++){
 		if (i == x || i == px) continue;
 		if (proc[i].ppid == proc[x].pid){
-			dfs(i, x);
+			dfs(i, x, next_indent);
 		} 
 	}
 }
