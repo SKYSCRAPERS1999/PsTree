@@ -18,8 +18,8 @@ struct Proc{
 	char name[64]; char state;
 	int sz, mxsz;
 	int *sons; 
-	
-	Proc(){
+
+	void init(){
 	 size = 0; mxsz = 50; 
 	 sons = = (int *)malloc(50 * sizeof(int));
 	}
@@ -40,7 +40,7 @@ int add_proc(char* filename){
 	FILE* fp = fopen(filename, "r");
 	if (fp) {
 	  if (fscanf(fp, "%d%s%c%d%d", &proc[pn].pid, proc[pn].name, &proc[pn].state, &proc[pn].ppid, &proc[pn].pgrp) > 0){
-	  	++pn;
+	  	proc[pn].init(); ++pn;
 	  	puts("OK");
 	  }else{puts("ERROR");}
 	  fclose(fp);
