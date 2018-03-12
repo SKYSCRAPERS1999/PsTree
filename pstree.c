@@ -86,6 +86,7 @@ bool islast[maxp];
 
 void dfs_print(){
 	if (be_sorted) qsort(proc, pn, sizeof(Proc), compare);
+	printf("SORTED\n");
 	for (int i = 0; i < pn; i++){
 		for (int j = 0; j < pn; j++){
 			if (j == i) continue;
