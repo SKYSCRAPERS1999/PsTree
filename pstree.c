@@ -102,7 +102,7 @@ void dfs(int x, int px, int indent, int* indents, int in){
 	for (int i = 0; i < pn; i++){
 		if (i == x || i == px) continue;
 		if (proc[i].ppid == proc[x].pid){
-			dfs(i, x, next_indent);
+			dfs(i, x, indent, indents, next_indent);
 		} 
 	}
 }
