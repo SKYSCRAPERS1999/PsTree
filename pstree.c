@@ -78,7 +78,7 @@ int find_proc(int pid){
 
 void dfs_print(){
 	int idx = -1;
-	if ((idx = find_proc(1)) > 0){
+	if ((idx = find_proc(1)) >= 0){
 		dfs(idx, idx);
 	}else{puts("ERROR");}
 }
