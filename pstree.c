@@ -89,20 +89,22 @@ void dfs_print(){
 
 void dfs(int x, int px, int indent, int* indents, int in){
 	for (int i = 0; i < indent; i++){
+		bool ok = 0;
 		for (int j = 0; j < in; j++) {
-			printf(" ");
 			if (indents[j] == i) {
-				printf("|"); break;
+				ok = 1; break;
 			}
 		}
+		if (ok) printf("|");
+		else printf(" ");
 	}
-	int next_indent = printf("|---%d\n", proc[x].pid) - 1;
+	int next_indent = printf("|---%d\n", proc[x].pid);
 	indents[in++] = next_indent;
 
 	for (int i = 0; i < pn; i++){
 		if (i == x || i == px) continue;
 		if (proc[i].ppid == proc[x].pid){
-			dfs(i, x, indent, indents, next_indent);
+			dfs(i, x, next_indent, indents, in);
 		} 
 	}
 }
