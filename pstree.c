@@ -54,9 +54,11 @@ void read_proc(char* dir){
 	while ((dirp = readdir(dp)) != NULL) {
 		if (!str_is_digit(dirp->d_name)) continue;
 		else {
-			strcat(dir, dirp->d_name);
-			printf("%s",dir);
-			add_proc(dir);
+			printf("%s%s\n", dir, dirp->d_name);
+			printf("%s\n", strcat(dir, dirp->d_name));
+			char* new_dir =strcat(dir, dirp->d_name);
+			printf("%s",new_dir);
+			add_proc(new_dir);
 		}
 	}
 	closedir(dp);
