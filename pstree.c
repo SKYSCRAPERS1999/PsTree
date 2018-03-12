@@ -85,7 +85,7 @@ int adj[maxp][maxp], p[maxp], an[maxp], indents[maxp], iid[maxp];
 bool islast[maxp];
 
 void dfs_print(){
-	if (be_sorted) qsort(proc, pn, pn * sizeof(Proc), compare);
+	if (be_sorted) qsort(proc, pn, sizeof(Proc), compare);
 	for (int i = 0; i < pn; i++){
 		for (int j = 0; j < pn; j++){
 			if (j == i) continue;
