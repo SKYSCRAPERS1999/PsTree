@@ -98,7 +98,7 @@ void dfs(int x, int px, int indent, int* indents, int in){
 		if (ok) printf("|");
 		else printf(" ");
 	}
-	int next_indent = indent + printf("|----%d\n", proc[x].pid) - 2;
+	int next_indent = indent + printf("|----%s\n", proc[x].name) - 2;
 	indents[in++] = next_indent;
 
 	for (int i = 0; i < pn; i++){
