@@ -76,7 +76,7 @@ int find_proc(int pid){
 	return -1;
 }
 
-int adj[maxp][maxp], an[maxp], indents[maxp], iid[maxp];
+int adj[maxp][maxp], p[maxp], an[maxp], indents[maxp], iid[maxp];
 bool islast[maxp];
 
 void dfs_print(){
@@ -84,7 +84,8 @@ void dfs_print(){
 		for (int j = 0; j < pn; j++){
 			if (j == i) continue;
 			if (proc[j].ppid == proc[i].pid){
-				adj[i][ an[i]++ ] = j;	
+				adj[i][ an[i]++ ] = j;
+				p[j] = i;
 			}
 		}
 		islast[ adj[i][ an[i] - 1 ] ] = true;
@@ -92,28 +93,28 @@ void dfs_print(){
 
 	int idx = -1, in = 0;
 	if ((idx = find_proc(1)) >= 0){
-		iid[0] = idx;
+		iid[0] = idx; p[idx] = idx;
 		dfs(idx, idx, 0, 0);
 	}else{puts("ERROR");}
 }
 
-void dfs(int x, int px, int indent, int in){
+void dfs(int x, int indent, int in){
 	for (int i = 0, j = 0; i < indent; i++){ 
 		while (j < in && indents[j] < i) j++;
 
 		if (j < in && indents[j] == i) {
-			if (islast[px] && (iid[indents[j]] == px)) printf(" ");
+			if (islast[p[x]] && (iid[indents[j]] == p[x])) printf(" ");
 			else printf("|");
 		} else printf(" ");
 	}
 
 	int next_indent = indent + printf("|----%s\n", proc[x].name) - 2;
 	indents[in++] = next_indent; 
-	iid[next_indent] = px;
+	iid[next_indent] = p[x];
 
 	int len = an[x];
 	for (int i = 0; i < len; i++){
-		dfs(adj[x][i], x, next_indent, in); 
+		dfs(adj[x][i], next_indent, in); 
 	}
 }
 
