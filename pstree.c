@@ -71,7 +71,7 @@ void read_proc(char* dir){
 	closedir(dp);
 }
 
-int find_key(int pid){
+int find_proc(int pid){
 	for (int i = 0; i < pn; i++) if (proc[i].pid == pid) return i;
 	return -1;
 }
