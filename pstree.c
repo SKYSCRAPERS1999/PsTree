@@ -52,7 +52,6 @@ void read_proc(char* dir){
 	while ((dirp = readdir(dp)) != NULL) {
 		if (!str_is_digit(dirp->d_name)) continue;
 		else {
-			printf("%s%s\n", dir, dirp->d_name);
 			char filename[256];
 			sprintf(filename, "%s%s/stat", dir, dirp->d_name);
 			printf("cnt: %d\n", add_proc(filename));
