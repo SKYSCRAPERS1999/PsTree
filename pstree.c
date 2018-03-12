@@ -16,9 +16,9 @@ int pn = 0;
 struct Proc{
 	int pid, ppid, pgrp; 
 	char name[64]; char state;
-	int size;
+	int sz, mxsz;
 	int *next = (int *)malloc(50 * sizeof(int));
-	Proc(){ size = 0; }
+	Proc(){ size = 0; mxsz = 50; }
 	//Proc(int pid, int ppid, int pgrp, char name[64]):pid(pid),ppid(ppid),pgrp(pgrp),name(name){}
 }proc[maxp];
 
