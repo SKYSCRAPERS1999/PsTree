@@ -90,10 +90,10 @@ void dfs_print(){
 void dfs(int x, int px, int indent, int* indents, int in){
 	for (int i = 0; i < indent; i++){
 		for (int j = 0; j < in; j++) {
+			printf(" ");
 			if (indents[j] == i) {
 				printf("|"); break;
 			}
-			printf(" ");
 		}
 	}
 	int next_indent = printf("|---%d\n", proc[x].pid) - 1;
