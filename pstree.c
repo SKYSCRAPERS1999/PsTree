@@ -71,7 +71,7 @@ void read_proc(char* dir){
 	closedir(dp);
 }
 
-int find_proc(int pid){
+int find_key(int pid){
 	for (int i = 0; i < pn; i++) if (proc[i].pid == pid) return i;
 	return -1;
 }
@@ -79,7 +79,6 @@ int find_proc(int pid){
 void dfs_print(){
 	int idx = -1, in = 0;
 	int *indents = (int *)malloc(maxp * sizeof(int));
-	
 	if ((idx = find_proc(1)) >= 0){
 		dfs(idx, idx, 0, indents, 0);
 	}else{puts("ERROR");}
@@ -106,6 +105,12 @@ void dfs(int x, int px, int indent, int* indents, int in){
 		if (proc[i].ppid == proc[x].pid){
 			dfs(i, x, next_indent, indents, in);
 		} 
+	}
+
+	for (int i = 0; i < in; i++){
+		if (indents[i] == indent) {
+			indents[i] = -1; break;
+		}
 	}
 }
 
