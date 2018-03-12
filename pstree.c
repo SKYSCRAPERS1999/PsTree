@@ -11,6 +11,7 @@ typedef int bool;
 #define true 1 
 #define false 0
 #define maxp 3000
+#define inf 0x3f3f3f3f
 
 int pn = 0; 
 struct Proc{
@@ -92,10 +93,10 @@ void dfs_print(){
 	}else{puts("ERROR");}
 }
 
-void dfs(int x, int px, int indent, int in){
-	for (int i = 0, j = 0; i < indent; i++){
+void dfs(int x, int px, int indent, int in, bool is_last){
+	for (int i = 0, j = 0; i < indent; i++){ 
 		while (j < in && indents[j] < i) j++;
-		if (j < in && indents[j] == i) printf("|");
+		if (j < in && indents[j] == i && !(j == in - 1 && is_last)) printf("|");
 		else printf(" ");
 	}
 
@@ -104,10 +105,9 @@ void dfs(int x, int px, int indent, int in){
 
 	int len = an[x];
 	for (int i = 0; i < len; i++){
-		if (adj[x][i] != px) dfs(adj[x][i], x, next_indent, in); 
+		if (adj[x][i] != px) dfs(adj[x][i], x, next_indent, in, i == len - 1); 
 	}
 }
-
 
 int main(int argc, char *argv[]) {
   int i;
