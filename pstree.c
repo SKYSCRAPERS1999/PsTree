@@ -136,7 +136,7 @@ int main(int argc, char *argv[]) {
     printf("argv[%d] = %s\n", i, argv[i]);
     if (!strcmp(argv[i], "-p") || !strcmp(argv[i], "--show-pids")) show_pid = true;
     else if (!strcmp(argv[i], "-n") || !strcmp(argv[i], "--numeric-sort")) be_sorted = true;
-    if (!strcmp(argv[i], "-v") || !strcmp(argv[i], "--version")){
+    if (!strcmp(argv[i], "-V") || !strcmp(argv[i], "--version")){
     	printf("pstree (PSmisc) 22.21\nCopyright (C) 1993-2009 Werner Almesberger and Craig Small\nPSmisc comes with ABSOLUTELY NO WARRANTY.\nThis is free software, and you are welcome to redistribute it under\nthe terms of the GNU General Public License.\nFor more information about these matters, see the files named COPYING.\nEscape~");
 		return 0;
     }
