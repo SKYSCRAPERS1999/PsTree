@@ -27,19 +27,19 @@ bool str_is_digit(char *s){
 	return ok;
 }
 
-void add_proc(char* filename){
+int add_proc(char* filename){
 	FILE* fp = fopen(filename, "r");
 	if (fp) {
 	  // 用fscanf, fgets等函数读取
 	  if (fscanf(fp, "%d%s%c%d%d", &proc[pn].pid, proc[pn].name, &proc[pn].state, &proc[pn].ppid, &proc[pn].pgrp) > 0){
+	  	++pn;
 	  	puts("OK");
 	  }else{puts("ERROR");}
-	  
 	  fclose(fp);
 	} else {
 		printf("Not Opened\n");
 	}
-
+	return pn;
 }
 
 void read_proc(char* dir){
@@ -55,7 +55,7 @@ void read_proc(char* dir){
 			printf("%s%s\n", dir, dirp->d_name);
 			char filename[256];
 			sprintf(filename, "%s%s/stat", dir, dirp->d_name);
-			add_proc(filename);
+			printf("cnt: %d\n", add_proc(filename));
 		}
 	}
 	closedir(dp);
