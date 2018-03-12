@@ -43,9 +43,8 @@ void add_proc(char* filename){
 		  	}
 		  	proc[pn].name[len - 2] = '\0';
 		}
-	  	printf("%d : %d %s %s %d %d\n", pn,  proc[pn].pid, proc[pn].name, proc[pn].state, proc[pn].ppid, proc[pn].pgrp);
-	  	++pn; puts("OK");
-
+	  	//printf("%d : %d %s %s %d %d\n", pn,  proc[pn].pid, proc[pn].name, proc[pn].state, proc[pn].ppid, proc[pn].pgrp);
+	  	++pn; //puts("OK");
 	  }else{puts("ERROR");}
 	  fclose(fp);
 	} else {
@@ -91,8 +90,6 @@ void dfs_print(){
 	if ((idx = find_proc(1)) >= 0){
 		dfs(idx, idx, 0, 0);
 	}else{puts("ERROR");}
-
-	free(indents);
 }
 
 void dfs(int x, int px, int indent, int in){
