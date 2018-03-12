@@ -10,7 +10,7 @@
 typedef int bool;
 #define true 1 
 #define false 0
-#define maxp 5000
+#define maxp 3000
 
 int pn = 0; 
 struct Proc{
@@ -76,7 +76,14 @@ int find_proc(int pid){
 	return -1;
 }
 
+int adj[maxp][maxp], an[maxp];
 void dfs_print(){
+	for (int i = 0; i < pn; i++){
+		if (proc[i].ppid == proc[x].pid){
+			adj[x][ an[x]++ ] = i;	
+		}
+	}
+
 	int idx = -1, in = 0;
 	int *indents = (int *)malloc(maxp * sizeof(int));
 	if ((idx = find_proc(1)) >= 0){
