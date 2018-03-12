@@ -102,7 +102,6 @@ void dfs(int x, int indent, int in){
 	iid[indent] = p[x];
 	for (int i = 0, j = 0; i < indent; i++){ 
 		while (j < in && indents[j] < i) j++;
-
 		if (j < in && indents[j] == i) {
 			bool omit = 0; int t = p[x];
 			for ( ; t != 0; t = p[t]){
