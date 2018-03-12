@@ -84,7 +84,8 @@ void dfs_print(){
 }
 
 void dfs(int x, int px, int indent){
-	for (int i = 0; i < indent; i++) printf("| ");
+	printf("|");
+	for (int i = 0; i < indent; i++) printf(" ");
 	int next_indent = printf("|---%d\n", proc[x].pid);
 	for (int i = 0; i < pn; i++){
 		if (i == x || i == px) continue;
