@@ -28,6 +28,7 @@ bool str_is_digit(char *s){
 }
 
 void add_proc(char* dir){
+	printf("strcat(dir,"/stat"\n");
 	FILE* fp = fopen(strcat(dir, "/stat"), "r");
 	if (fp) {
 	  // 用fscanf, fgets等函数读取
