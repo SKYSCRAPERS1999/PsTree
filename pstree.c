@@ -76,7 +76,7 @@ int find_proc(int pid){
 	return -1;
 }
 
-int adj[maxp][maxp], an[maxp];
+int adj[maxp][maxp], an[maxp], indents[maxp];
 void dfs_print(){
 	for (int i = 0; i < pn; i++){
 		for (int j = 0; j < pn; j++){
@@ -88,15 +88,14 @@ void dfs_print(){
 	}
 
 	int idx = -1, in = 0;
-	int *indents = (int *)malloc(maxp * sizeof(int));
 	if ((idx = find_proc(1)) >= 0){
-		dfs(idx, idx, 0, indents, 0);
+		dfs(idx, idx, 0, 0);
 	}else{puts("ERROR");}
 
 	free(indents);
 }
 
-void dfs(int x, int px, int indent, int* indents, int in){
+void dfs(int x, int px, int indent, int in){
 	for (int i = 0, j = 0; i < indent; i++){
 		while (j < in && indents[j] < i) j++;
 		if (j < in && indents[j] == i) printf("|");
@@ -109,7 +108,7 @@ void dfs(int x, int px, int indent, int* indents, int in){
 	for (int i = 0; i < pn; i++){
 		int len = an[i];
 		for (int j = 0; j < len; j++){
-			dfs(adj[i][j], i, next_indent, indents, in); 
+			dfs(adj[i][j], i, next_indent, in); 
 		}
 	}
 }
