@@ -96,5 +96,7 @@ int main(int argc, char *argv[]) {
   assert(!argv[argc]); // specification
 
   read_proc("/proc/");
+
+  dfs_print();
   return 0;
 }
