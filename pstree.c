@@ -24,7 +24,7 @@ struct Proc{
 typedef struct Proc Proc;
 
 int compare(const Proc* A, const Proc* B){
-	return strcmp(A->name, B->name);
+	return A->name < B->name ? -1 : 1;
 }
 
 bool str_is_digit(char *s){
