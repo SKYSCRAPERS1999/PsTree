@@ -23,7 +23,7 @@ struct Proc{
 }proc[maxp];
 
 int compare(const void* A, const void* B){
-	return (struct Proc*)(A)->name < (struct Proc*)(B)->name ? -1 : 1;
+	return ((struct Proc*)A)->name < ((struct Proc*)B)->name ? -1 : 1;
 }
 
 bool str_is_digit(char *s){
