@@ -27,8 +27,8 @@ bool str_is_digit(char *s){
 	return ok;
 }
 
-void add_proc(char* dir, char* dirname){
-	FILE* fp = fopen(strcat(strcat(dir, dirname), "/stat"), "r");
+void add_proc(char* dir){
+	FILE* fp = fopen(strcat(dir, "/stat"), "r");
 	if (fp) {
 	  // 用fscanf, fgets等函数读取
 	  int pid, ppid, pgrp; char name[60]; char state;
@@ -55,7 +55,7 @@ void read_proc(char* dir){
 		if (!str_is_digit(dirp->d_name)) continue;
 		else {
 			printf("%s%s\n", dir, dirp->d_name);
-			add_proc(dir, dirp->d_name);
+			add_proc(strcat(dir, dirp->d_name));
 		}
 	}
 	closedir(dp);
