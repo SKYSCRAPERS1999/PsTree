@@ -48,10 +48,10 @@ void add_proc(char* filename){
 		}
 	  	//puts("OK"); //printf("%d : %d %s %s %d %d\n", pn,  proc[pn].pid, proc[pn].name, proc[pn].state, proc[pn].ppid, proc[pn].pgrp);
 	  	++pn; 
-	  }else{puts("ERROR");}
+	  }else{puts("Read error!");}
 	  fclose(fp);
 	} else {
-		printf("Not Opened\n");
+		puts("Not Opened");
 	}
 }
 
@@ -82,8 +82,9 @@ int adj[maxp][maxp], p[maxp], an[maxp], indents[maxp], iid[maxp];
 bool islast[maxp];
 
 void dfs_print(){
+	// Sort the processes if necessary
 	if (be_sorted) qsort(proc, pn, sizeof(Proc), compare);
-	printf("SORTED\n");
+	// Initialize the adjacent list
 	for (int i = 0; i < pn; i++){
 		for (int j = 0; j < pn; j++){
 			if (j == i) continue;
@@ -94,7 +95,7 @@ void dfs_print(){
 		}
 		islast[ adj[i][ an[i] - 1 ] ] = true;
 	}
-
+	// Begin to print the pstree by dfs
 	int idx = -1, in = 0;
 	if ((idx = find_proc(1)) >= 0){
 		iid[0] = idx; p[idx] = idx;
@@ -141,7 +142,6 @@ int main(int argc, char *argv[]) {
 		return 0;
     }
   }
-
   assert(!argv[argc]); // specification
 
   read_proc("/proc/");
