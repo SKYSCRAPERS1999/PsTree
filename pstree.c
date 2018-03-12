@@ -23,8 +23,8 @@ struct Proc{
 }proc[maxp];
 typedef struct Proc Proc;
 
-int compare(const void* A, const void* B){
-	return strcmp(((Proc*)A)->name, ((Proc*)B)->name);
+int compare(const Proc* A, const Proc* B){
+	return strcmp(A->name, B->name);
 }
 
 bool str_is_digit(char *s){
