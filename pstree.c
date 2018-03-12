@@ -13,7 +13,7 @@ typedef int bool;
 int pn = 0; 
 struct Proc{
 	int pid, ppid, pgrp; 
-	char name[64];
+	char name[64]; char state;
 	//Proc(int pid, int ppid, int pgrp, char name[64]):pid(pid),ppid(ppid),pgrp(pgrp),name(name){}
 }proc[maxp];
 
