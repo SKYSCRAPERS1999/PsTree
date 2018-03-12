@@ -100,10 +100,13 @@ void dfs(int x, int px, int indent, int in){
 	for (int i = 0, j = 0; i < indent; i++){ 
 		while (j < in && indents[j] < i) j++;
 
-		if (islast[px]){
-			printf("(i,j,indent,in,islast)=(%d,%d,%d,%d,%d)\n",i,j,indent,in,islast[px]);
+
+		if (j < in && indents[j] == i && !(j == in - 1 && islast[px])) {
+			if (islast[px]){
+				printf("(i,j,indent,in,islast)=(%d,%d,%d,%d,%d)\n",i,j,indent,in,islast[px]);
+			}
+			printf("|");
 		}
-		if (j < in && indents[j] == i && !(j == in - 1 && islast[px])) printf("|");
 		else printf(" ");
 	}
 
