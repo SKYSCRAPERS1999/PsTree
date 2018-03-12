@@ -33,7 +33,7 @@ void read_proc(char* dir){
 	}
 	while ((dirp = readdir(dp)) != NULL) {
 		if (!str_is_digit(dirp->d_name)) continue;
-		else printf("%s\n", dirp->d_name);
+		else printf("%s/%s\n", dir, dirp->d_name);
 	}
 	closedir(dp);
 }
