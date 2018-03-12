@@ -55,7 +55,7 @@ void read_proc(char* dir){
 		if (!str_is_digit(dirp->d_name)) continue;
 		else {
 			printf("%s%s\n", dir, dirp->d_name);
-			new_dir = strcat(dir, dirp->d_name);
+			char* new_dir = strcat(dir, dirp->d_name);
 			printf("%s",strcat(new_dir,"/stat"));
 			add_proc(new_dir);
 		}
