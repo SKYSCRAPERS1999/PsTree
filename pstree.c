@@ -36,11 +36,12 @@ void add_proc(char* filename){
 	if (fp) {
 	  if (fscanf(fp, "%d%s%s%d%d", &proc[pn].pid, proc[pn].name, &proc[pn].state, &proc[pn].ppid, &proc[pn].pgrp) > 0){
 	  	//proc[pn].sz = 0, proc[pn].mxsz = 50, proc[pn].sons = (int *)malloc(50 * sizeof(int));
-		if (strlen(proc[pn].name) >= 2){
-		  	for (int i = 0; i < strlen(proc[pn].name) - 1; i++){
+	  	int len = strlen(proc[pn].name);
+		if (len >= 2){
+		  	for (int i = 0; i < len - 1; i++){
 		  		proc[pn].name[i] = proc[pn].name[i + 1];
 		  	}
-		  	proc[pn].name[pn - 2] = '\0';
+		  	proc[pn].name[len - 2] = '\0';
 		}
 	  	printf("%d : %d %s %s %d %d\n", pn,  proc[pn].pid, proc[pn].name, proc[pn].state, proc[pn].ppid, proc[pn].pgrp);
 	  	++pn; puts("OK");
