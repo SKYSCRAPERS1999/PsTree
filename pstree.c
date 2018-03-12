@@ -12,8 +12,8 @@ typedef int bool;
 #define false 0
 #define maxp 3000
 #define inf 0x3f3f3f3f
-
-int pn = 0; 
+bool show_pid, be_sorted;
+int pn;
 struct Proc{
 	int pid, ppid, pgrp; 
 	char name[64]; char state[8];
@@ -21,6 +21,10 @@ struct Proc{
 	//int *sons; 
 	//Proc(int pid, int ppid, int pgrp, char name[64]):pid(pid),ppid(ppid),pgrp(pgrp),name(name){}
 }proc[maxp];
+
+int compare(const void* A, const void* B){
+	return (Proc*)(A->name) < (Proc*)(B->name) ? -1 : 1;
+}
 
 bool str_is_digit(char *s){
 	bool ok = true;
@@ -80,6 +84,7 @@ int adj[maxp][maxp], p[maxp], an[maxp], indents[maxp], iid[maxp];
 bool islast[maxp];
 
 void dfs_print(){
+	if (be_sorted) qsort(proc, pn, pn * sizeof(Proc), compare);
 	for (int i = 0; i < pn; i++){
 		for (int j = 0; j < pn; j++){
 			if (j == i) continue;
@@ -128,6 +133,8 @@ int main(int argc, char *argv[]) {
   for (i = 0; i < argc; i++) {
     assert(argv[i]); // specification
     printf("argv[%d] = %s\n", i, argv[i]);
+    if (argv[i] == "-p" || argv[i] == "--show-pids") show_pid = true;
+    else if (argv[i] == "-n" || argv[i] == "--numeric-sort") be_sorted = true;
   }
   assert(!argv[argc]); // specification
 
