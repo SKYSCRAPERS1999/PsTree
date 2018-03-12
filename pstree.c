@@ -104,7 +104,7 @@ void dfs(int x, int indent, int in){
 		while (j < in && indents[j] < i) j++;
 
 		if (j < in && indents[j] == i) {
-			if (islast[p[x]] && (iid[indents[j]] == p[x])) printf(" ");
+			if (islast[p[x]] && (iid[indents[j]] == p[p[x]])) printf(" ");
 			else printf("|");
 		} else printf(" ");
 	}
