@@ -103,7 +103,7 @@ void dfs(int x, int px, int indent, int in){
 
 		if (j < in && indents[j] == i && !(j == in - 1 && islast[px])) {
 			if (islast[px]){
-				printf("(i,j,indent,in,islast)=(%d,%d,%d,%d,%d)\n",i,j,indent,in,islast[px]);
+				//printf("(i,j,indent,in,islast)=(%d,%d,%d,%d,%d)\n",i,j,indent,in,islast[px]);
 			}
 			printf("|");
 		}
