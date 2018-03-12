@@ -5,6 +5,9 @@
 #include <sys/types.h>
 #include <ctype.h>
 #include <string.h>
+typedef int bool
+#define true 1 
+#define false 0
 
 struct Proc{
 	int pid, ppid, pgrp; 
