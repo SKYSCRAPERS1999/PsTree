@@ -5,15 +5,20 @@
 #include <sys/types.h>
 #include <ctype.h>
 #include <string.h>
+#include <stdlib.h>
+
 typedef int bool;
 #define true 1 
 #define false 0
-#define maxp 50000
+#define maxp 5000
 
 int pn = 0; 
 struct Proc{
 	int pid, ppid, pgrp; 
 	char name[64]; char state;
+	int size;
+	int *next = malloc(50 * sizeof(int));
+	Proc(){ size = 0; }
 	//Proc(int pid, int ppid, int pgrp, char name[64]):pid(pid),ppid(ppid),pgrp(pgrp),name(name){}
 }proc[maxp];
 
@@ -30,7 +35,6 @@ bool str_is_digit(char *s){
 int add_proc(char* filename){
 	FILE* fp = fopen(filename, "r");
 	if (fp) {
-	  // 用fscanf, fgets等函数读取
 	  if (fscanf(fp, "%d%s%c%d%d", &proc[pn].pid, proc[pn].name, &proc[pn].state, &proc[pn].ppid, &proc[pn].pgrp) > 0){
 	  	++pn;
 	  	puts("OK");
@@ -59,7 +63,6 @@ void read_proc(char* dir){
 	}
 	closedir(dp);
 }
-
 
 int main(int argc, char *argv[]) {
   int i;
