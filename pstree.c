@@ -11,7 +11,6 @@ typedef int bool;
 #define true 1 
 #define false 0
 #define maxp 3000
-#define inf 0x3f3f3f3f
 bool show_pid, be_sorted;
 int pn;
 struct Proc{
