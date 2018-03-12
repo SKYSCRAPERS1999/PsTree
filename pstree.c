@@ -77,6 +77,8 @@ int find_proc(int pid){
 }
 
 int adj[maxp][maxp], an[maxp], indents[maxp];
+bool is_last[maxp];
+
 void dfs_print(){
 	for (int i = 0; i < pn; i++){
 		for (int j = 0; j < pn; j++){
@@ -85,6 +87,7 @@ void dfs_print(){
 				adj[i][ an[i]++ ] = j;	
 			}
 		}
+		is_last[ adj[i][ an[i] ] ] = true;
 	}
 
 	int idx = -1, in = 0;
@@ -93,10 +96,10 @@ void dfs_print(){
 	}else{puts("ERROR");}
 }
 
-void dfs(int x, int px, int indent, int in, bool is_last){
+void dfs(int x, int px, int indent, int in){
 	for (int i = 0, j = 0; i < indent; i++){ 
 		while (j < in && indents[j] < i) j++;
-		if (j < in && indents[j] == i && !(j == in - 1 && is_last)) printf("|");
+		if (j < in && indents[j] == i && !(j == in - 1 && is_last[x])) printf("|");
 		else printf(" ");
 	}
 
