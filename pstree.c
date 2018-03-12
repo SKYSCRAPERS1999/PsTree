@@ -99,18 +99,18 @@ void dfs_print(){
 }
 
 void dfs(int x, int indent, int in){
+	iid[indent] = p[x];
 	for (int i = 0, j = 0; i < indent; i++){ 
 		while (j < in && indents[j] < i) j++;
 
 		if (j < in && indents[j] == i) {
-			if (islast[p[x]] && (iid[indents[j]] == p[p[x]])) printf(" ");
+			if (islast[p[x]] && (iid[indents[j]] == p[x])) printf(" ");
 			else printf("|");
 		} else printf(" ");
 	}
 
 	int next_indent = indent + printf("|----%s\n", proc[x].name) - 2;
 	indents[in++] = next_indent; 
-	iid[next_indent] = p[x];
 
 	int len = an[x];
 	for (int i = 0; i < len; i++){
