@@ -35,7 +35,7 @@ int add_proc(char* filename){
 	FILE* fp = fopen(filename, "r");
 	if (fp) {
 	  if (fscanf(fp, "%d%s%c%d%d", &proc[pn].pid, proc[pn].name, &proc[pn].state, &proc[pn].ppid, &proc[pn].pgrp) > 0){
-	  	proc[pn].size = 0, proc[pn].mxsz = 50, proc[pn].sons = (int *)malloc(50 * sizeof(int));	  	
+	  	proc[pn].sz = 0, proc[pn].mxsz = 50, proc[pn].sons = (int *)malloc(50 * sizeof(int));	  	
 	  	++pn;
 	  	puts("OK");
 	  }else{puts("ERROR");}
