@@ -8,11 +8,15 @@
 typedef int bool;
 #define true 1 
 #define false 0
+#define maxp 50000
 
+int pn = 0; 
 struct Proc{
 	int pid, ppid, pgrp; 
 	char name[64];
-};
+	Proc(int pid, int ppid, int pgrp, char name[64]):pid(pid),ppid(ppid),pgrp(pgrp),name(name){}
+	Proc(){}
+}proc[maxp];
 
 bool str_is_digit(char *s){
 	bool ok = true;
@@ -24,6 +28,22 @@ bool str_is_digit(char *s){
 	return ok;
 }
 
+void add_proc(char* filename){
+	FILE* fp = fopen(filename, "r");
+	if (fp) {
+	  // 用fscanf, fgets等函数读取
+	  int pid, name, state, ppid; char name[60];
+	  if (fscanf(fp, "%d%s%c%d%d", pid, name, state, ppid) == 4){
+	  	printf("OK\n");
+	  }else{printf("Not OK\n");}
+	  
+	  fclose(fp);
+	} else {
+	  // 错误处理
+	}
+
+}
+
 void read_proc(char* dir){
 	DIR *dp;
 	struct dirent *dirp;
@@ -33,7 +53,10 @@ void read_proc(char* dir){
 	}
 	while ((dirp = readdir(dp)) != NULL) {
 		if (!str_is_digit(dirp->d_name)) continue;
-		else printf("%s/%s\n", dir, dirp->d_name);
+		else {
+			printf("%s/%s\n", dir, dirp->d_name);
+			add_proc(dirp->d_name);
+		}
 	}
 	closedir(dp);
 }
@@ -48,6 +71,5 @@ int main(int argc, char *argv[]) {
   assert(!argv[argc]); // specification
 
   read_proc("/proc");
-
   return 0;
 }
