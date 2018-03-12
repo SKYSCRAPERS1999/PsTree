@@ -108,7 +108,7 @@ void dfs(int x, int px, int indent, int in){
 
 	int len = an[x];
 	for (int i = 0; i < len; i++){
-		dfs(adj[x][i], x, next_indent, in, i == len - 1); 
+		dfs(adj[x][i], x, next_indent, in); 
 	}
 }
 
