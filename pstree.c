@@ -77,19 +77,32 @@ int find_proc(int pid){
 }
 
 void dfs_print(){
-	int idx = -1;
+	int idx = -1, in = 0;
+	int *indents = (int *)malloc(maxp * sizeof(int));
+	
 	if ((idx = find_proc(1)) >= 0){
-		dfs(idx, idx);
+		dfs(idx, idx, 0, indents, 0);
 	}else{puts("ERROR");}
+
+	free(indents);
 }
 
-void dfs(int x, int px, int indent){
-	for (int i = 0; i < indent; i++) printf(" ");
-	int next_indent = printf("|---%d\n", proc[x].pid);
+void dfs(int x, int px, int indent, int* indents, int in){
+	for (int i = 0; i < indent; i++){
+		for (int j = 0; j < in; j++) {
+			if (indents[j] == i) {
+				printf("|"); break;
+			}
+			printf(" ");
+		}
+	}
+	int next_indent = printf("|---%d\n", proc[x].pid) - 1;
+	indents[in++] = next_indent;
+
 	for (int i = 0; i < pn; i++){
 		if (i == x || i == px) continue;
 		if (proc[i].ppid == proc[x].pid){
-			dfs(i, x, next_indent - 1);
+			dfs(i, x, next_indent);
 		} 
 	}
 }
