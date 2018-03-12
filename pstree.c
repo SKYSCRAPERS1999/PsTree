@@ -14,7 +14,7 @@ int pn = 0;
 struct Proc{
 	int pid, ppid, pgrp; 
 	char name[64];
-	Proc(int pid, int ppid, int pgrp, char name[64]):pid(pid),ppid(ppid),pgrp(pgrp),name(name){}
+	//Proc(int pid, int ppid, int pgrp, char name[64]):pid(pid),ppid(ppid),pgrp(pgrp),name(name){}
 }proc[maxp];
 
 bool str_is_digit(char *s){
