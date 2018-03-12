@@ -107,11 +107,6 @@ void dfs(int x, int px, int indent, int* indents, int in){
 		} 
 	}
 
-	for (int i = 0; i < in; i++){
-		if (indents[i] == next_indent) {
-			indents[i] = -1; break;
-		}
-	}
 }
 
 
