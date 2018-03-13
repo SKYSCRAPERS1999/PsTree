@@ -115,13 +115,13 @@ void dfs(int x, int indent, int in){
 			 	}
 			}
 			if (omit) printf(" ");
-			else printf("|");
+			else printf("│");
 		} else printf(" ");
 	}
 
 	int next_indent;
-	if (show_pid) next_indent = indent + printf("|--%s(%d)\n", proc[x].name, proc[x].pid) - 2;
-	else next_indent = indent + printf("|--%s\n", proc[x].name) - 2;
+	if (show_pid) next_indent = indent + printf("│──%s(%d)\n", proc[x].name, proc[x].pid) - 2;
+	else next_indent = indent + printf("│──%s\n", proc[x].name) - 2;
 	indents[in++] = next_indent; 
 
 	int len = an[x];
