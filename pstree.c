@@ -120,8 +120,8 @@ void dfs(int x, int indent, int in){
 	}
 
 	int next_indent;
-	if (show_pid) next_indent = indent + printf("│--%s(%d)\n", proc[x].name, proc[x].pid) - 2;
-	else next_indent = indent + printf("│--%s\n", proc[x].name) - 2;
+	if (show_pid) next_indent = indent + printf("│--%s(%d)\n", proc[x].name, proc[x].pid) - 4;
+	else next_indent = indent + printf("│--%s\n", proc[x].name) - 4;
 	indents[in++] = next_indent; 
 
 	int len = an[x];
